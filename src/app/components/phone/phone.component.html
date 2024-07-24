@@ -1,0 +1,22 @@
+<div>
+    <div class=" grid grid-cols-6  border-2 border-black text-white">        
+        <div >{{phone.id}}</div>
+        <div>{{phone.number}}</div>
+        <div>{{phone.typeNumber}} </div>
+        <div>{{phone.fullName}}</div>         
+        <button (click)="DeletePhone(phone.id)" class="bg-red-500 p-1 border-r-2">Удалить</button>
+        <button (click)="UpdateFlag()" class="bg-red-500 p-1 border-l-2">Изменить</button>
+    </div>
+    <div *ngIf="updateFlag" class=" left-[5%] absolute  bg-white h-[200px] w-[500px]"  >
+        <label>Номер телефона</label>
+        <input type="number" [(ngModel)]="Updatephone" #updatephone="ngModel"
+        required 
+        pattern="^[0-9]{9}$" 
+        class="border-2 solid border-black rounded-lg">
+        <div *ngIf="updatephone.invalid &&(updatephone.dirty ||updatephone.touched) "class="text-red-500">
+            <div *ngIf="updatephone.errors?.required">Номер телефона обязателен для заполнения.</div>
+            <div *ngIf="updatephone.errors?.pattern">Номер телефона должен состоять из 9 цифр.</div> 
+        </div>
+        <button (click)="UpdatePhone(Updatephone,phone.id )"class="p-3 bg-red-500"> Изменить</button>
+</div>
+    </div>
